@@ -1,0 +1,176 @@
+{
+    "type": "object",
+    "properties": {
+        "matterId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a hold within Vault. A hold restricts purging of\nartifacts based on the combination of the query and accounts restrictions.\nA hold can be configured to either apply to an explicitly configured set\nof accounts, or can be applied to all members of an organizational unit.",
+            "properties": {
+                "accounts": {
+                    "description": "If set, the hold applies to the enumerated accounts and org_unit must be\nempty.",
+                    "items": {
+                        "description": "An account being held in a particular hold. This structure is immutable.\nThis can be either a single user or a google group, depending on the corpus.",
+                        "properties": {
+                            "accountId": {
+                                "description": "The account's ID as provided by the\n<a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>.",
+                                "type": "string"
+                            },
+                            "holdTime": {
+                                "description": "When the account was put on hold.",
+                                "format": "google-datetime",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "corpus": {
+                    "description": "The corpus to be searched.",
+                    "enum": [
+                        "CORPUS_TYPE_UNSPECIFIED",
+                        "DRIVE",
+                        "MAIL",
+                        "GROUPS",
+                        "HANGOUTS_CHAT"
+                    ],
+                    "type": "string"
+                },
+                "holdId": {
+                    "description": "The unique immutable ID of the hold. Assigned during creation.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the hold.",
+                    "type": "string"
+                },
+                "orgUnit": {
+                    "description": "If set, the hold applies to all members of the organizational unit and\naccounts must be empty. This property is mutable. For groups holds,\nset the accounts field.",
+                    "properties": {
+                        "holdTime": {
+                            "description": "When the org unit was put on hold. This property is immutable.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "orgUnitId": {
+                            "description": "The org unit's immutable ID as provided by the Admin SDK.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "query": {
+                    "description": "The corpus-specific query. If set, the corpusQuery must match corpus\ntype.",
+                    "properties": {
+                        "driveQuery": {
+                            "description": "Details pertaining to Drive holds. If set, corpus must be Drive.",
+                            "properties": {
+                                "includeTeamDriveFiles": {
+                                    "description": "If true, include files in Team Drives in the hold.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "groupsQuery": {
+                            "description": "Details pertaining to Groups holds. If set, corpus must be Groups.",
+                            "properties": {
+                                "endTime": {
+                                    "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                                    "format": "google-datetime",
+                                    "type": "string"
+                                },
+                                "startTime": {
+                                    "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                                    "format": "google-datetime",
+                                    "type": "string"
+                                },
+                                "terms": {
+                                    "description": "The search terms for the hold.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "hangoutsChatQuery": {
+                            "description": "Details pertaining to Hangouts Chat holds. If set, corpus must be\nHangouts Chat.",
+                            "properties": {
+                                "includeRooms": {
+                                    "description": "If true, include rooms the user has participated in.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "mailQuery": {
+                            "description": "Details pertaining to mail holds. If set, corpus must be mail.",
+                            "properties": {
+                                "endTime": {
+                                    "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                                    "format": "google-datetime",
+                                    "type": "string"
+                                },
+                                "startTime": {
+                                    "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                                    "format": "google-datetime",
+                                    "type": "string"
+                                },
+                                "terms": {
+                                    "description": "The search terms for the hold.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "updateTime": {
+                    "description": "The last time this hold was modified.",
+                    "format": "google-datetime",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

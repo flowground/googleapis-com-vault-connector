@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "matterId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Add an account with the permission specified. The role cannot be owner.\nIf an account already has a role in the matter, it will be\noverwritten.",
+            "properties": {
+                "ccMe": {
+                    "description": "Only relevant if send_emails is true.\nTrue to CC requestor in the email message.\nFalse to not CC requestor.",
+                    "type": "boolean"
+                },
+                "matterPermission": {
+                    "description": "The MatterPermission to add.",
+                    "properties": {
+                        "accountId": {
+                            "description": "The account id, as provided by <a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>.",
+                            "type": "string"
+                        },
+                        "role": {
+                            "description": "The user's role in this matter.",
+                            "enum": [
+                                "ROLE_UNSPECIFIED",
+                                "COLLABORATOR",
+                                "OWNER"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sendEmails": {
+                    "description": "True to send notification email to the added account.\nFalse to not send notification email.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

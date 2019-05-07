@@ -1,0 +1,526 @@
+{
+    "title": "G Suite Vault",
+    "description": "Archiving and eDiscovery for G Suite.",
+    "docsUrl": "https://developers.google.com/vault",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/vault/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://vault.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "vault_matters_list": {
+            "main": "./lib/actions/vault_matters_list.js",
+            "title": "Lists matters the user has access to.",
+            "description": "Lists matters the user has access to.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_create": {
+            "main": "./lib/actions/vault_matters_create.js",
+            "title": "Creates a new matter with the given name and description. The initial state\nis open, and the owner is the method caller. Returns the created matter\nwith default view.",
+            "description": "Creates a new matter with the given name and description. The initial state\nis open, and the owner is the method caller. Returns the created matter\nwith default view.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_delete": {
+            "main": "./lib/actions/vault_matters_delete.js",
+            "title": "Deletes the specified matter. Returns matter with updated state.",
+            "description": "Deletes the specified matter. Returns matter with updated state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_get": {
+            "main": "./lib/actions/vault_matters_get.js",
+            "title": "Gets the specified matter.",
+            "description": "Gets the specified matter.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_update": {
+            "main": "./lib/actions/vault_matters_update.js",
+            "title": "Updates the specified matter.\nThis updates only the name and description of the matter, identified by\nmatter id. Changes to any other fields are ignored.\nReturns the default view of the matter.",
+            "description": "Updates the specified matter.\nThis updates only the name and description of the matter, identified by\nmatter id. Changes to any other fields are ignored.\nReturns the default view of the matter.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_exports_list": {
+            "main": "./lib/actions/vault_matters_exports_list.js",
+            "title": "Lists Exports.",
+            "description": "Lists Exports.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_exports_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_exports_create": {
+            "main": "./lib/actions/vault_matters_exports_create.js",
+            "title": "Creates an Export.",
+            "description": "Creates an Export.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_exports_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_exports_delete": {
+            "main": "./lib/actions/vault_matters_exports_delete.js",
+            "title": "Deletes an Export.",
+            "description": "Deletes an Export.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_exports_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_exports_get": {
+            "main": "./lib/actions/vault_matters_exports_get.js",
+            "title": "Gets an Export.",
+            "description": "Gets an Export.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_exports_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_list": {
+            "main": "./lib/actions/vault_matters_holds_list.js",
+            "title": "Lists holds within a matter. An empty page token in ListHoldsResponse\ndenotes no more holds to list.",
+            "description": "Lists holds within a matter. An empty page token in ListHoldsResponse\ndenotes no more holds to list.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_create": {
+            "main": "./lib/actions/vault_matters_holds_create.js",
+            "title": "Creates a hold in the given matter.",
+            "description": "Creates a hold in the given matter.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_delete": {
+            "main": "./lib/actions/vault_matters_holds_delete.js",
+            "title": "Removes a hold by ID. This will release any HeldAccounts on this Hold.",
+            "description": "Removes a hold by ID. This will release any HeldAccounts on this Hold.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_get": {
+            "main": "./lib/actions/vault_matters_holds_get.js",
+            "title": "Gets a hold by ID.",
+            "description": "Gets a hold by ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_update": {
+            "main": "./lib/actions/vault_matters_holds_update.js",
+            "title": "Updates the OU and/or query parameters of a hold. You cannot add accounts\nto a hold that covers an OU, nor can you add OUs to a hold that covers\nindividual accounts. Accounts listed in the hold will be ignored.",
+            "description": "Updates the OU and/or query parameters of a hold. You cannot add accounts\nto a hold that covers an OU, nor can you add OUs to a hold that covers\nindividual accounts. Accounts listed in the hold will be ignored.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_accounts_list": {
+            "main": "./lib/actions/vault_matters_holds_accounts_list.js",
+            "title": "Lists HeldAccounts for a hold. This will only list individually specified\nheld accounts. If the hold is on an OU, then use\n<a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>\nto enumerate its members.",
+            "description": "Lists HeldAccounts for a hold. This will only list individually specified\nheld accounts. If the hold is on an OU, then use\n<a href=\"https://developers.google.com/admin-sdk/\">Admin SDK</a>\nto enumerate its members.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_accounts_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_accounts_create": {
+            "main": "./lib/actions/vault_matters_holds_accounts_create.js",
+            "title": "Adds a HeldAccount to a hold. Accounts can only be added to a hold that\nhas no held_org_unit set. Attempting to add an account to an OU-based\nhold will result in an error.",
+            "description": "Adds a HeldAccount to a hold. Accounts can only be added to a hold that\nhas no held_org_unit set. Attempting to add an account to an OU-based\nhold will result in an error.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_accounts_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_accounts_delete": {
+            "main": "./lib/actions/vault_matters_holds_accounts_delete.js",
+            "title": "Removes a HeldAccount from a hold. If this request leaves the hold with\nno held accounts, the hold will not apply to any accounts.",
+            "description": "Removes a HeldAccount from a hold. If this request leaves the hold with\nno held accounts, the hold will not apply to any accounts.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_accounts_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_addHeldAccounts": {
+            "main": "./lib/actions/vault_matters_holds_addHeldAccounts.js",
+            "title": "Adds HeldAccounts to a hold. Returns a list of accounts that have been\nsuccessfully added. Accounts can only be added to an existing account-based\nhold.",
+            "description": "Adds HeldAccounts to a hold. Returns a list of accounts that have been\nsuccessfully added. Accounts can only be added to an existing account-based\nhold.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_addHeldAccounts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_holds_removeHeldAccounts": {
+            "main": "./lib/actions/vault_matters_holds_removeHeldAccounts.js",
+            "title": "Removes HeldAccounts from a hold. Returns a list of statuses in the same\norder as the request. If this request leaves the hold with no held\naccounts, the hold will not apply to any accounts.",
+            "description": "Removes HeldAccounts from a hold. Returns a list of statuses in the same\norder as the request. If this request leaves the hold with no held\naccounts, the hold will not apply to any accounts.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_holds_removeHeldAccounts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_savedQueries_list": {
+            "main": "./lib/actions/vault_matters_savedQueries_list.js",
+            "title": "Lists saved queries within a matter. An empty page token in\nListSavedQueriesResponse denotes no more saved queries to list.",
+            "description": "Lists saved queries within a matter. An empty page token in\nListSavedQueriesResponse denotes no more saved queries to list.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_savedQueries_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_savedQueries_create": {
+            "main": "./lib/actions/vault_matters_savedQueries_create.js",
+            "title": "Creates a saved query.",
+            "description": "Creates a saved query.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_savedQueries_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_savedQueries_delete": {
+            "main": "./lib/actions/vault_matters_savedQueries_delete.js",
+            "title": "Deletes a saved query by Id.",
+            "description": "Deletes a saved query by Id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_savedQueries_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_savedQueries_get": {
+            "main": "./lib/actions/vault_matters_savedQueries_get.js",
+            "title": "Retrieves a saved query by Id.",
+            "description": "Retrieves a saved query by Id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_savedQueries_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_addPermissions": {
+            "main": "./lib/actions/vault_matters_addPermissions.js",
+            "title": "Adds an account as a matter collaborator.",
+            "description": "Adds an account as a matter collaborator.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_addPermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_close": {
+            "main": "./lib/actions/vault_matters_close.js",
+            "title": "Closes the specified matter. Returns matter with updated state.",
+            "description": "Closes the specified matter. Returns matter with updated state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_close.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_removePermissions": {
+            "main": "./lib/actions/vault_matters_removePermissions.js",
+            "title": "Removes an account as a matter collaborator.",
+            "description": "Removes an account as a matter collaborator.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_removePermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_reopen": {
+            "main": "./lib/actions/vault_matters_reopen.js",
+            "title": "Reopens the specified matter. Returns matter with updated state.",
+            "description": "Reopens the specified matter. Returns matter with updated state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_reopen.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "vault_matters_undelete": {
+            "main": "./lib/actions/vault_matters_undelete.js",
+            "title": "Undeletes the specified matter. Returns matter with updated state.",
+            "description": "Undeletes the specified matter. Returns matter with updated state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/vault_matters_undelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

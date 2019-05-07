@@ -1,0 +1,210 @@
+{
+    "type": "object",
+    "properties": {
+        "matterId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Definition of the saved query.",
+            "properties": {
+                "createTime": {
+                    "description": "Output only. The server generated timestamp at which saved query was\ncreated.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "displayName": {
+                    "description": "Name of the saved query.",
+                    "type": "string"
+                },
+                "matterId": {
+                    "description": "Output only. The matter id of the associated matter.\nThe server does not look at this field during create and always uses matter\nid in the URL.",
+                    "type": "string"
+                },
+                "query": {
+                    "description": "The underlying Query object which contains all the information of the saved\nquery.",
+                    "properties": {
+                        "accountInfo": {
+                            "description": "When 'ACCOUNT' is chosen as search method,\naccount_info needs to be specified.",
+                            "properties": {
+                                "emails": {
+                                    "description": "A set of accounts to search.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "corpus": {
+                            "description": "The corpus to search.",
+                            "enum": [
+                                "CORPUS_TYPE_UNSPECIFIED",
+                                "DRIVE",
+                                "MAIL",
+                                "GROUPS",
+                                "HANGOUTS_CHAT"
+                            ],
+                            "type": "string"
+                        },
+                        "dataScope": {
+                            "description": "The data source to search from.",
+                            "enum": [
+                                "DATA_SCOPE_UNSPECIFIED",
+                                "ALL_DATA",
+                                "HELD_DATA",
+                                "UNPROCESSED_DATA"
+                            ],
+                            "type": "string"
+                        },
+                        "driveOptions": {
+                            "description": "For Drive search, specify more options in this field.",
+                            "properties": {
+                                "includeTeamDrives": {
+                                    "description": "Set to true to include Team Drive.",
+                                    "type": "boolean"
+                                },
+                                "versionDate": {
+                                    "description": "Search the versions of the Drive file\nas of the reference date. These timestamps are in GMT and\nrounded down to the given date.",
+                                    "format": "google-datetime",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "endTime": {
+                            "description": "The end time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "hangoutsChatInfo": {
+                            "description": "When 'ROOM' is chosen as search method, hangout_chats_info needs to be\nspecified. (read-only)",
+                            "properties": {
+                                "roomId": {
+                                    "description": "A set of rooms to search.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "hangoutsChatOptions": {
+                            "description": "For hangouts chat search, specify more options in this field. (read-only)",
+                            "properties": {
+                                "includeRooms": {
+                                    "description": "Set to true to include rooms.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "mailOptions": {
+                            "description": "For mail search, specify more options in this field.",
+                            "properties": {
+                                "excludeDrafts": {
+                                    "description": "Set to true to exclude drafts.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "orgUnitInfo": {
+                            "description": "When 'ORG_UNIT' is chosen as as search method, org_unit_info needs\nto be specified.",
+                            "properties": {
+                                "orgUnitId": {
+                                    "description": "Org unit to search, as provided by the\n<a href=\"https://developers.google.com/admin-sdk/directory/\">Admin SDK Directory API</a>.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "searchMethod": {
+                            "description": "The search method to use.",
+                            "enum": [
+                                "SEARCH_METHOD_UNSPECIFIED",
+                                "ACCOUNT",
+                                "ORG_UNIT",
+                                "TEAM_DRIVE",
+                                "ENTIRE_ORG",
+                                "ROOM"
+                            ],
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "description": "The start time range for the search query. These timestamps are in GMT and\nrounded down to the start of the given date.",
+                            "format": "google-datetime",
+                            "type": "string"
+                        },
+                        "teamDriveInfo": {
+                            "description": "When 'TEAM_DRIVE' is chosen as search method, team_drive_info needs to be\nspecified.",
+                            "properties": {
+                                "teamDriveIds": {
+                                    "description": "List of Team Drive ids, as provided by <a\nhref=\"https://developers.google.com/drive\">Drive API</a>.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "terms": {
+                            "description": "The corpus-specific\n<a href=\"https://support.google.com/vault/answer/2474474\">search operators</a>\nused to generate search results.",
+                            "type": "string"
+                        },
+                        "timeZone": {
+                            "description": "The time zone name.\nIt should be an IANA TZ name, such as \"America/Los_Angeles\".\nFor more information, see\n<a href=\"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones\">Time\nZone</a>.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "savedQueryId": {
+                    "description": "A unique identifier for the saved query.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
